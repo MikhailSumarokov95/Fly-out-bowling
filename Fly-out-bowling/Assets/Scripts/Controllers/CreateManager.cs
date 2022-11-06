@@ -33,7 +33,7 @@ public class CreateManager : MonoBehaviour, IShoper
     {
         if (_car != null) Destroy(_car);
         _car = Instantiate(_carSkin, carSpawnPoint.position, _carSkin.transform.rotation);
-        onCreateCar?.Invoke(_car);
+        onCreateCar?.Invoke(_car.transform.Find("TargetCamera").gameObject);
     } 
 
     public void CreateCharacter(float powerForce, float angleForce)
@@ -44,7 +44,7 @@ public class CreateManager : MonoBehaviour, IShoper
         chatacterCh.AngleStartForce = angleForce;
         chatacterCh.AngleTurnCarY = _car.transform.eulerAngles.y;
         _car.GetComponent<CarPlayer>().BanControl();
-        onCreateCharacter?.Invoke(_character[_character.Count - 1]);
+        onCreateCharacter?.Invoke(null);
     }
 
     public void DestroyCharacters()

@@ -17,5 +17,5 @@ public class Camera : MonoBehaviour
         transform.LookAt(_target.transform);
     }
 
-    public void SetTarget(GameObject target) => _target = target.transform.Find("TargetCamera");
+    public void SetTarget(GameObject target) => _target = target?.transform;
 }
