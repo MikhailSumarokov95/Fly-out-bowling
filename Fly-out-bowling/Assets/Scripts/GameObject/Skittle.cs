@@ -17,10 +17,10 @@ public class Skittle : MonoBehaviour
     private void Update()
     {
         var deltaRotation = _startRotation - transform.eulerAngles;
-        if (Mathf.Abs(deltaRotation.x) > 50 || Mathf.Abs(deltaRotation.z) > 50)
+        if (Mathf.Abs(deltaRotation.x) > 10 || Mathf.Abs(deltaRotation.z) > 10)
         {
             Destroy(this);
-            transform.GetComponentInParent<SkittlesController>().onSkittleFallen(number);
+            transform.GetComponentInParent<SkittlesController>().SkittleFallen(number);
         }
     }
 

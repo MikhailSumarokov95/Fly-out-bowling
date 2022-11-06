@@ -25,7 +25,7 @@ public class CreateManager : MonoBehaviour, IShoper
     public void CreateLevel()
     {
         if (_currentLevel != null) Destroy(_currentLevel);
-        var selectedLevel = levelsPrefabs[Random.Range(0, levelsPrefabs.Length - 1)];
+        var selectedLevel = levelsPrefabs[Random.Range(0, levelsPrefabs.Length)];
         _currentLevel = Instantiate(selectedLevel, selectedLevel.transform.position, selectedLevel.transform.rotation);
     }
 
@@ -34,7 +34,7 @@ public class CreateManager : MonoBehaviour, IShoper
         if (_car != null) Destroy(_car);
         _car = Instantiate(_carSkin, carSpawnPoint.position, _carSkin.transform.rotation);
         onCreateCar?.Invoke(_car.transform.Find("TargetCamera").gameObject);
-    } 
+    }
 
     public void CreateCharacter(float powerForce, float angleForce)
     {
@@ -44,15 +44,12 @@ public class CreateManager : MonoBehaviour, IShoper
         chatacterCh.AngleStartForce = angleForce;
         chatacterCh.AngleTurnCarY = _car.transform.eulerAngles.y;
         _car.GetComponent<CarPlayer>().BanControl();
-        onCreateCharacter?.Invoke(null);
+        onCreateCharacter?.Invoke(_character[_character.Count - 1].transform.Find("TargetCamera").gameObject);
     }
 
     public void DestroyCharacters()
     {
-        for (int i = 0; i < _character.Count; i++)
-        {
-            Destroy(_character[i]);
-        }
+        for (int i = 0; i < _character.Count; i++) Destroy(_character[i]);
         _character.Clear();
     }
 
