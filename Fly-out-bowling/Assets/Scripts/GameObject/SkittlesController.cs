@@ -34,7 +34,7 @@ public class SkittlesController : MonoBehaviour
         {
             var skittleTransform = transform.GetChild(i);
             skittleTransform.GetComponent<Skittle>()?.StopMove();
-            if (skittleTransform.GetComponent<Skittle>() == null && !(skittleTransform == targetCamera))
+            if (skittleTransform.GetComponent<Skittle>() == null && !(skittleTransform.gameObject == targetCamera))
                 Destroy(skittleTransform.gameObject);
         }
         _isStartedCoroutine = false;
