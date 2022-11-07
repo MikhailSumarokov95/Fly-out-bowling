@@ -11,6 +11,7 @@ public class Guade : MonoBehaviour
     [SerializeField] private GameObject pcGuadeCar;
     private GameObject _guadeCar;
     private GameObject _guadeCharacter;
+    private InputController _inputController;
 
     private void Start()
     {
@@ -24,6 +25,14 @@ public class Guade : MonoBehaviour
             _guadeCar = pcGuadeCar;
             _guadeCharacter = pcGuadeCharacter;
         }
+        _inputController = FindObjectOfType<InputController>();
+    }
+
+    private void Update()
+    {
+        if (_guadeCar.activeInHierarchy && _inputController.TouchDownForSelectForce ||
+            Mathf.Abs(_inputController.Horizontal) > 0.1f || Mathf.Abs(_inputController.Vertical) > 0.1f)
+            StopGuadeCar();
     }
 
     public void StartGuadeCar()

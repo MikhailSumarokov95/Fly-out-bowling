@@ -18,6 +18,7 @@ namespace ToxicFamilyGames.YandexSDK
         [DllImport("__Internal")]
         private static extern void Authorization(bool scopes, string photoSize);
 #else
+
         public static bool IsMobile()
         {
             return false;
